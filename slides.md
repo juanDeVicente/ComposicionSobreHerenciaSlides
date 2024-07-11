@@ -149,7 +149,7 @@ Obliga a saber la implementación: En un entorno con tantos proyectos puede no s
 
 Estructura con factorías e interfaces
 
-```csharp
+```csharp {all|8-11} twoslash
 // FALTA EL CÓDIGO PARA DAR DE ALTA SERVICIOS
 
 using var scope = serviceProvider.CreateScope();
@@ -173,12 +173,13 @@ Este código está terminado, no hay quye tocarlo nunca más
 ---
 level: 2
 ---
+
 # Definición de las interfaces
 
 La interfaz define una capacidad
 
 
-```csharp
+```csharp {all|9-13|1|3|6|4} twoslash
 public interface IPrinter<in TModel> : IPrinter where TModel : IModel
 {
     Type IPrinter.TypeToPrint => typeof(TModel);
@@ -201,13 +202,14 @@ IPriner es la que usaran las factorías
 
 ¿Porque esta diferenciación? Porque todos queremos programar con tipos, no queremos dinámicos ni cosas de esas
 -->
+
 ---
 level: 2
 ---
 
 # Implementación de las interfaces
 
-```csharp
+```csharp {all|1,13|3,15} twoslash
 public class AverageModelPrinter : IPrinter<AverageModel>
 {
     public string Print(AverageModel printable)
@@ -219,9 +221,7 @@ public class AverageModelPrinter : IPrinter<AverageModel>
         return sb.ToString();
     }
 }
-```
 
-```csharp
 public class SuperModelPrinter : IPrinter<SuperModel>
 {
     public string Print(SuperModel printable)
@@ -244,7 +244,7 @@ level: 2
 
 # Cómo usar las interfaces
 
-```csharp
+```csharp {all|4,8|17|20} twoslash
 public class SlashFactory
 {
     private readonly List<IModel> _models = []; // Se rellenan en otro lado
@@ -323,6 +323,11 @@ classDiagram
     <carbon-logo-github />
   </a>
   Código de ejemplo
+- <a href="hhttps://github.com/juanDeVicente/ComposicionSobreHerenciaSlides" target="_blank" alt="GitHub" title="Enlace de Github con las diapositivas"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon-logo-github />
+  </a>
+  Diapositivas de la presentación
 
 ---
 layout: center
